@@ -25,7 +25,6 @@ const Game = () => {
   }, []);
 
   const handleControl = (e) => {
-    // console.log(e.key);
     // eslint-disable-next-line default-case
     switch (e.key) {
       case "ArrowUp":
@@ -43,12 +42,29 @@ const Game = () => {
     }
   };
 
-  const ateFood = (newSnake) => {
+  const handleCollid = (pos1, pos2) => {
+    return pos1.x === pos2.x && pos1.y === pos2.y;
+  };
+
+  const collision = (position, { head = false } = {}) => {
+    return snake.some((segment, index) => {
+      if (head && index === 0) return false;
+      return handleCollid(segment, position);
+    });
+  };
+
+  //if collid
+  useEffect(() => {
+    if (collision(snake[0], { head: true })) {
+      setGameOver(true);
+    }
+  });
+
+  function ateFood(newSnake) {
     setFood(generateRandomCell());
     setSnake(newSnake);
-    // console.log(newSnake);
     setScore((prevstate) => prevstate + 1);
-  };
+  }
 
   const updateGame = () => {
     // if it collide with grid walls
@@ -63,7 +79,6 @@ const Game = () => {
     }
 
     //Move snake
-
     let newSnake = [...snake];
     if (direction === "UP") {
       newSnake.unshift({ x: snake[0].x, y: snake[0].y - 1 });
@@ -88,7 +103,6 @@ const Game = () => {
   };
 
   useEffect(() => {
-    console.log("render");
     document.addEventListener("keydown", handleControl);
     return () => document.removeEventListener("keydown", handleControl);
   });

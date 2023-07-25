@@ -57,6 +57,9 @@ body {
 .snake {
   background-color: var(--snake-color);
 }
+.snake:first-child {
+  border-radius: 10px;
+}
 .start-btn {
   position: fixed;
   animation: appear 1000ms linear 10ms;
