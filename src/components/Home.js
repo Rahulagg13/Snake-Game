@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
-      {/* <img
-        src={LanderPageImage}
-        alt=""
-        className="bg-cover block h-screen w-full"
-      /> */}
+      <div className="relative top-[10%] text-8xl  text-white tracking-widest text-center p-4">
+        Snake-Game
+      </div>
       <Link
         to="game"
         className="enter-game absolute bottom-1/2 left-10 ring-4 ring-white px-8 py-4 rounded-xl text-xl z-10 text-white flex  items-center space-x-4 md:text-3xl md:left-40"
