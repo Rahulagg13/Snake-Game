@@ -4,6 +4,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -19,16 +21,20 @@
 
 body {
   margin: 0;
-  background: #000;
-  background-size: cover;
-  background-repeat: no-repeat;
   width: 100vw;
-  height: 100vh;
+  heihgt: 100vh;
   /* transition: all 1s linear 1s; */
   /* position:relative;/ */
   /* position: relative; */
 }
 
+.image {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("img/Snake-Lander-Image.jpg");
+  background-size: cover;
+  z-index: 0;
+}
 .game-board {
   border: 1px solid;
   width: max-content;
@@ -37,13 +43,12 @@ body {
   grid-template-rows: repeat(20, 30px);
   gap: 1px;
   background: inherit;
-  background-color: #f0f0f0;
+  background-color: inherit;
 }
 
 .cell {
   width: 30px;
   height: 30px;
-  background-color: #fff;
 }
 
 .enter-game:hover {
@@ -51,27 +56,39 @@ body {
 }
 
 .food {
-  background-color: var(--food-color);
+  background-image: url("img/food-image.jpeg");
+  mix-blend-mode: multiply;
+  background-size: cover;
 }
 
 .snake {
   background-color: var(--snake-color);
-}
-.snake:first-child {
   border-radius: 10px;
 }
-.start-btn {
-  position: fixed;
-  animation: appear 1000ms linear 10ms;
-  top: 40%;
-  left: 37%;
+
+.try {
+  animation: appear 300ms linear 10ms;
 }
 
 @keyframes appear {
-  from {
-    transform: translateY(-1000px);
+  0% {
+    opacity: 0;
+    transform: scale(0);
   }
-  to {
-    transform: translateY(0);
+  25% {
+    opacity: 1;
+    transform: scale(0.25);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(0.75);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

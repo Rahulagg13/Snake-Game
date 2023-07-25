@@ -26,7 +26,11 @@ const router = createBrowserRouter([
 
 //App component
 function App() {
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <div className="image">
+      <RouterProvider router={router}></RouterProvider>;
+    </div>
+  );
 }
 
 export default App;

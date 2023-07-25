@@ -54,11 +54,6 @@ const Game = () => {
   };
 
   //if collid
-  useEffect(() => {
-    if (collision(snake[0], { head: true })) {
-      setGameOver(true);
-    }
-  });
 
   function ateFood(newSnake) {
     setFood(generateRandomCell());
@@ -77,7 +72,10 @@ const Game = () => {
       setGameOver(true);
       return;
     }
-
+    if (collision(snake[0], { head: true })) {
+      setGameOver(true);
+      return;
+    }
     //Move snake
     let newSnake = [...snake];
     if (direction === "UP") {
@@ -109,7 +107,7 @@ const Game = () => {
 
   useEffect(() => {
     if (!gameOver) {
-      const moveSnake = setInterval(updateGame, 200);
+      const moveSnake = setInterval(updateGame, 100);
       return () => clearInterval(moveSnake);
     }
   });
@@ -133,10 +131,23 @@ const Game = () => {
     return cells;
   };
 
+  const handlebtn = () => {
+    window.location.reload();
+  };
+
   return (
-    <div className=" h-screen flex flex-col  space-y-10 justify-center items-center">
+    <div className="flex flex-col  space-y-10 justify-center items-center">
       <div className="text-white text-4xl">Score :{score}</div>
       <div className="game-board">{renderCell()}</div>
+      {gameOver && (
+        <button
+          type="button"
+          className="try absolute bg-[#e3e582] text-black px-4 py-2 text-3xl rounded-md border-black border-2"
+          onClick={handlebtn}
+        >
+          Try Again !!!
+        </button>
+      )}
     </div>
   );
 };
